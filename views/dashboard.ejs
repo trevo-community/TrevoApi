@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AniKit</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:title" content="REST API FREE">
+  <meta property="og:description" content="FEITA POR: @clovermods">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.8/font-awesome-animation.min.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://telegra.ph/file/e28fabcd7e856b4bcef0a.jpg">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="canonical" href="https://demo-basic.adminkit.io/">
+  <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&amp;display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css" type="text/css"
+    media="all" />
+  <link rel="stylesheet" type="text/css" href="https://ferdiz-afk.github.io/deskapp/vendors/styles/core.css">
+  <link rel="stylesheet" type="text/css" href="https://ferdiz-afk.github.io/deskapp/vendors/styles/icon-font.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="https://ferdiz-afk.github.io/deskapp/vendors/styles/style.css">
+  <style>
+    body {
+      background: #310404 url('<%= user.wallpaper %>') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      font-family: 'Barlow', sans-serif;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-119386393-1');
+  </script>
+
+
+  <style>
+    .tutotxt {}
+
+    .fotos {
+      width: 90%;
+      border-radius: 7px;
+    }
+
+    .tutotxtt {
+      margin: 7px;
+      text-align: center;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 13px;
+    }
+
+    .user-name {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .margem {
+      margin-left: 7px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: white;
+      width: 6%;
+      border-radius: 5px;
+      color: black;
+    }
+
+
+
+    .vertical-bar {
+      width: 1px;
+      height: 70px;
+      margin: 0;
+      padding: 2px;
+      background-color: red;
+      border-radius: 7px;
+    }
+
+    .vertical-bar2 {
+      width: 1px;
+      height: 70px;
+      margin: 0;
+      padding: 2px;
+      background-color: gold;
+      border-radius: 7px;
+    }
+
+    .current-time {
+      font-size: 19px;
+      margin-right: 0;
+      margin-left: 60%;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class="header">
+    <div class="header-left">
+      <div class="menu-icon bi bi-list"></div>
+
+
+      <div class="margem">
+        <div class="fas fa-users-cog" data-toggle="header_search"></div>
+      </div>
+      <div class="header-search">
+        <form>
+          <div class="form-group mb-0">
+            <% if (user.isAdm) { %>
+              <hr>
+              <a class="verp" href="/admin">Editar Usuários</a>
+              <hr>
+              <% } else { %>
+
+                <% } %>
+                  <div class="dropdown">
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">From</label>
+                        <div class="col-sm-12 col-md-10">
+                          <input class="form-control form-control-sm form-control-line" type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">To</label>
+                        <div class="col-sm-12 col-md-10">
+                          <input class="form-control form-control-sm form-control-line" type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
+                        <div class="col-sm-12 col-md-10">
+                          <input class="form-control form-control-sm form-control-line" type="text" />
+                        </div>
+                      </div>
+                      <div class="text-right">
+                        <button class="btn btn-primary">Search</button>
+                      </div>
+                    </div>
+                  </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+    <div class="header-right">
+      <div class="dashboard-setting user-notification">
+        <div class="dropdown">
+          <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
+            <i class="dw dw-settings2"></i>
+          </a>
+        </div>
+      </div>
+      <div class="user-notification">
+        <div class="dropdown">
+          <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+            <i class="icon-copy dw dw-notification"></i>
+            <span class="badge notification-active"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="notification-list mx-h-350 customscroll">
+              <ul>
+                <li>
+                  <a href="#">
+                    <img src="https://telegra.ph/file/87fe9fdbf08280460e531.jpg" alt="" />
+                    <h3>Clover Mods</h3>
+                    <p>
+                      Esta gostando? qualquer duvida entre em contato com o suporte!
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="user-info-dropdown">
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+            <span class="user-icon">
+              <img src="<%= user.ft %>" alt="" />
+            </span>
+            <span class="user-name">
+              <%= user.username %>
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+            <a class="dropdown-item" href="/myperfil"><i class="dw dw-user1"></i> Profile</a>
+            <a class="dropdown-item" href="/login"><i class="dw dw-logout"></i> Log Out</a>
+          </div>
+        </div>
+      </div>
+      <div class="github-link">
+        <img src="vendors/images/github.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="right-sidebar">
+    <div class="sidebar-title">
+      <h3 class="weight-600 font-16 text-blue">
+        Layout Settings
+        <span class="btn-block font-weight-400 font-12">User Interface Settings</span>
+      </h3>
+      <div class="close-sidebar" data-toggle="right-sidebar-close">
+        <i class="icon-copy ion-close-round"></i>
+      </div>
+    </div>
+    <div class="right-sidebar-body customscroll">
+      <div class="right-sidebar-body-content">
+        <h4 class="weight-600 font-18 pb-10">Header Background</h4>
+        <div class="sidebar-btn-group pb-30 mb-10">
+          <a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
+          <a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
+        </div>
+
+        <h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
+        <div class="sidebar-btn-group pb-30 mb-10">
+          <a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light">White</a>
+          <a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
+        </div>
+
+        <h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
+        <div class="sidebar-radio-group pb-10 mb-10">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input"
+              value="icon-style-1" checked="" />
+            <label class="custom-control-label" for="sidebaricon-1"><i class="fa fa-angle-down"></i></label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input"
+              value="icon-style-2" />
+            <label class="custom-control-label" for="sidebaricon-2"><i class="ion-plus-round"></i></label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input"
+              value="icon-style-3" />
+            <label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
+          </div>
+        </div>
+
+        <h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
+        <div class="sidebar-radio-group pb-30 mb-10">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input"
+              value="icon-list-style-1" checked="" />
+            <label class="custom-control-label" for="sidebariconlist-1"><i class="ion-minus-round"></i></label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input"
+              value="icon-list-style-2" />
+            <label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o"
+                aria-hidden="true"></i></label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input"
+              value="icon-list-style-3" />
+            <label class="custom-control-label" for="sidebariconlist-3"><i class="dw dw-check"></i></label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input"
+              value="icon-list-style-4" checked="" />
+            <label class="custom-control-label" for="sidebariconlist-4"><i class="icon-copy dw dw-next-2"></i></label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input"
+              value="icon-list-style-5" />
+            <label class="custom-control-label" for="sidebariconlist-5"><i class="dw dw-fast-forward-1"></i></label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input"
+              value="icon-list-style-6" />
+            <label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
+          </div>
+        </div>
+
+        <div class="reset-options pt-30 text-center">
+          <button class="btn btn-danger" id="reset-settings">
+            Reset Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="left-side-bar">
+    <div class="brand-logo">
+      <a href="#">
+        <img src="https://telegra.ph/file/e28fabcd7e856b4bcef0a.jpg" alt class="dark-logo"
+          style="width:600px;height:70px;">
+        <img src="https://telegra.ph/file/e28fabcd7e856b4bcef0a.jpg" alt class="light-logo"
+          style="width:600px;height:70px;">
+      </a>
+      <div class="close-sidebar" data-toggle="left-sidebar-close">
+        <i class="ion-close-round"></i>
+      </div>
+    </div>
+    <div class="menu-block customscroll mCustomScrollbar _mCS_3">
+      <div class="sidebar-menu icon-style-1 icon-list-style-1">
+        <ul id="accordion-menu">
+          <li>
+            <a href="/" class="dropdown-toggle no-arrow">
+              <span class="micon bi bi-house"></span>
+              <span class="mtext">INICIAL</span>
+            </a>
+          </li>
+          <hr>
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle" data-option="off">
+              <span class="micon bi bi-headset"></span>
+              <span class="mtext">SUPORTE 24/48</span>
+            </a>
+            <ul class="submenu">
+              <li>
+                <a href="https://wa.me/557598659560">WHATSAPP</a>
+              </li>
+              <li>
+                <a href="https://t.me/cinco_folhas">TELEGRAM</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+          <li>
+          </li>
+          <li>
+          </li>
+          <li>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pre-loader">
+    <div class="pre-loader-box">
+      <div class="loader-logo">
+        <img src="https://i.ibb.co/DtFgv3g/giphy.webp" alt>
+      </div>
+      <div class="loader-progress" id="progress_div">
+        <div class="bar" id="bar1"></div>
+      </div>
+      <div class="percent" id="percent1">0%</div>
+      <div class="loading-text"> CARREGANDO... </div>
+    </div>
+  </div>
+
+
+  <div class="mobile-menu-overlay"></div>
+  <div class="main-container">
+    <div class="xs-pd-20-10 pd-ltr-20">
+      <div class="title pb-20">
+        <h2 style="color:yellow;" class="h3 mb-0">PAINEL</h2>
+      </div>
+      <div class="row pb-10">
+        <% if (!user.isBaned===true) { %>
+
+          <% if (!user.isPremium===true) { %>
+            <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+              <div class="card-box height-100-p widget-style3">
+                <div class="d-flex flex-wrap">
+                  <div class="widget-data">
+                    <div class="weight-700 font-24 text-dark">Olá</div>
+                    <div class="font-14 text-secondary weight-500">
+                      <%= user.username %>!
+                    </div>
+                  </div>
+                  <div class="widget-icon">
+                    <div class="icon">
+                      <i class="icon-copy fa fa-user faa-pulse animated faa-slow" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } else { %>
+              <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                <div class="card-box height-100-p widget-style3">
+                  <div class="d-flex flex-wrap">
+                    <div class="widget-data">
+                      <div class="status">
+                        <div class="vertical-bar2"></div>
+                        <p class="current-time">
+                        <h4>@<%= user.username %>!<h4>
+                              </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+
+                <% } else { %>
+
+
+                  <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                      <div class="d-flex flex-wrap">
+                        <div class="widget-data">
+                          <div class="status">
+                            <div class="vertical-bar"></div>
+                            <p class="current-time">
+                            <h4>Banido(a)!<h4>
+                                </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <% } %>
+
+
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                      <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                          <div class="widget-data">
+                            <div class="weight-700 font-16 text-dark">
+                              <%= quantidade %>
+                            </div>
+                            <div class="font-14 text-secondary weight-500">
+                              Registrados
+                            </div>
+                          </div>
+                          <div class="widget-icon">
+                            <div class="icon" data-color="#00eccf">
+                              <i class="icon-copy dw dw-calendar1"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                      <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                          <div class="widget-data">
+                            <div class="weight-700 font-16 text-dark">
+                              <%= user.total %>
+                            </div>
+                            <div class="font-14 text-secondary weight-500">
+                              Saldo usado
+                            </div>
+                          </div>
+                          <div class="widget-icon">
+                            <div class="icon" data-color="#ff5b5b">
+                              <span class="icon-copy ti-heart"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+<div class="card-box height-100-p widget-style3">
+<div class="d-flex flex-wrap">
+<div class="widget-data">
+<div class="weight-700 font-24 text-dark">400+</div>
+<div class="font-14 text-secondary weight-500">
+Total Doctor
+</div>
+</div>
+<div class="widget-icon">
+<div class="icon">
+<i
+class="icon-copy fa fa-stethoscope"
+aria-hidden="true"
+></i>
+</div>
+</div>
+</div>
+</div>
+</div>-->
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                      <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                          <div class="widget-data">
+                            <div class="weight-700 font-16 text-dark">
+                              <%= user.key %>
+                            </div>
+                            <div class="font-14 text-secondary weight-500">Chave/Apikey</div>
+                          </div>
+                          <div class="widget-icon">
+                            <div class="icon" data-color="#09cc06">
+                              <i class="icon-copy fa fa-key" aria-hidden="true"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      </div>
+
+      <div class="row pb-10">
+
+        <div class="col-md-4 mb-20">
+
+          <div class="card-box min-height-200px pd-20" data-bgcolor="#265ed7">
+            <div class="d-flex justify-content-between pb-20 text-white">
+              <div class="icon h1 text-white">
+                <i class="fa fa-stethoscope" aria-hidden="true"></i>
+              </div>
+              <div class="font-14 text-right">
+                <div>ID <%= user._id %>
+                </div>
+                <div class="font-12">Cartao AniKit</div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-end">
+              <div class="text-white">
+                <div class="font-14">Saldo Restante</div>
+                <div class="font-24 weight-500">
+                  <%= userDb.saldo %>
+                </div>
+              </div>
+              <div class="max-width-150">
+                <div id="surgery-chart"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-20">
+          <div class="card-box height-100-p pd-20 min-height-200px">
+            <div class="d-flex justify-content-between pb-10">
+              <div class="h5 mb-0">Top Usuários</div>
+
+            </div>
+            <div class="user-list">
+              <ul>
+
+                <% topUsers.sort((a, b)=> b.saldo - a.saldo).forEach(function(user) { %><br>
+                  <li class="d-flex align-items-center justify-content-between">
+                    <div class="name-avatar d-flex align-items-center pr-2">
+                      <div class="avatar mr-2 flex-shrink-0">
+                        <img src="<%= user.ft %>" class="border-radius-100 box-shadow" width="50" height="50" alt="" />
+                      </div>
+                      <div class="txt">
+                        <span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">
+                          <%= user.saldo %>
+                        </span>
+                        <div class="font-14 weight-600">
+                          <%= user.username %>
+                        </div>
+                        <div class="font-12 weight-500" data-color="#b2b1b6">
+                          Usuário Top
+                        </div>
+                      </div>
+                    </div>
+
+                  </li>
+
+                  <% }); %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-20">
+
+        </div>
+
+
+      </div>
+
+      <div class="footer-wrap pd-20 mb-20 card-box">
+        Lady Bot - Feita com ❤️ por
+        <a href="https://youtube.com/@clovermods" target="_blank">Clover</a>
+      </div>
+    </div>
+  </div>
+  <!-- welcome modal start -->
+  <div class="welcome-modal">
+    <button class="welcome-modal-close">
+      <i class="bi bi-x-lg"></i>
+    </button>
+    <iframe class="w-100 border-0" src="https://embed.lottiefiles.com/animation/31548"></iframe>
+    <div class="text-center">
+      <h3 class="h5 weight-500 text-center mb-2">
+        CANAL OFC DA BOT
+        <span role="img" aria-label="gratitude">❤️</span>
+      </h3>
+
+    </div>
+    <div class="text-center mb-1">
+      <div>
+        <a href="https://youtube.com/@clovermods" target="_blank" class="btn btn-light btn-block btn-sm">
+          <span class="text-danger weight-600">CANAL</span>
+          <span class="weight-600">YOUTUBE</span>
+          <i class="fa fa-youtube"></i>
+        </a>
+      </div>
+      <script async defer="defer" src="https://buttons.github.io/buttons.js"></script>
+    </div>
+    <a href="https://github.com/trevo-community/cases-api" target="_blank"
+      class="btn btn-success btn-sm mb-0 mb-md-3 w-100">
+      GitHub
+      <i class="fa fa-download"></i>
+    </a>
+    <p class="font-14 text-center mb-1 d-none d-md-block">
+
+    </p>
+    <div class="d-none d-md-flex justify-content-center h1 mb-0 text-danger">
+      <i class="fa fa-html5"></i>
+    </div>
+  </div>
+  <button class="welcome-modal-btn">
+    <i class="fa fa-download"></i>
+  </button>
+  <!-- welcome modal end -->
+  <!-- js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/core.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/script.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/process.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/layout-settings.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/apexcharts/apexcharts.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/dashboard.js"></script>
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
+      style="display: none; visibility: hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

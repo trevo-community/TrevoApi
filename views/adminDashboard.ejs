@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Logins</title>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f0f0f0;
+    }
+
+    .dark-theme {
+        background-color: #fff;
+        color: #fff;
+    }
+
+    .dark-theme .video-container {
+        background-color: #222;
+    }
+
+    .dark-theme .header {
+        background-color: #444;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 180px;
+        background-color: #fff;
+        color: #fff;
+        padding: 20px;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .menu-container.show-menu {
+        left: 0;
+    }
+
+    .menu-container button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .menu-container button:hover {
+        background-color: #0056b3;
+    }
+
+    .menu-toggle {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        display: block;
+        color: black;
+
+    }
+
+    .header {
+        background-color: #fff;
+        justify-content: space-between;
+        padding: 0 10%;
+        height: 3.5em;
+        margin: 0;
+        box-shadow: 1px 1px 4px var(--color-dark4);
+    }
+
+    .menu-toggle.hide-menu {
+        display: none;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: black;
+    }
+
+    .video-container {
+        margin-left: 200px;
+        max-width: 99%;
+        margin: 20px auto;
+        margin: 15px;
+        background-color: #fff;
+        box-shadow: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        color: black;
+        box-shadow: 1px 1px 1px black;
+    }
+
+    input[type="text"] {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
+        color: black;
+    }
+
+    input[type="password"] {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: black;
+        color: black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .video-player-container {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    button {
+        display: block;
+        margin-top: 10px;
+        padding: 10px 60px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .deletar {
+        display: block;
+        margin: 10px;
+        padding: 10px 22px;
+        background-color: red;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+    <div class="menu-container" id="menu">
+        <span class="close-button" onclick="toggleMenu()">&#10006;</span>
+        <h3>Menu</h3><br>
+        <hr><br>
+
+
+    </div>
+    <div class="header">
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </div>
+    <br>
+
+    <form action="/search" method="GET">
+        <input type="text" name="search" placeholder="Pesquisar usuário">
+        <center>
+            <button type="submit">Pesquisar</button>
+        </center>
+    </form>
+    <br>
+    <h1>Lista de Logins</h1>
+    <div class="video-container">
+        <hr><br>
+        <% users.forEach((user)=> { %>
+            <span>Nome de usuário: <%= user.username %></span><br>
+            <span>Senha: <%= user.password %></span><br>
+            <span>Chave: <%= user.key %></span><br>
+            <span>Saldo: <%= user.saldo %></span>
+            <br>
+            <center>
+                <div class="flex">
+                    <button class="deletar" onclick="confirmDelete('<%= user.username %>')">Deletar Usuário</button>
+                    <a href="/editar/<%= user.username %>"><button>Editar</button></a>
+                </div>
+            </center>
+            <br>
+            <hr><br>
+            <% }) %>
+    </div>
+
+    <script>
+        function confirmDelete(username) {
+            if (confirm('Tem certeza que deseja deletar este usuário?')) {
+                window.location.href = '/deletar/' + username;
+            }
+        }
+
+        function toggleDarkTheme() {
+            const body = document.querySelector('body');
+            const card = document.querySelector('.video-container ');
+            const cabeca = document.querySelector('.header');
+            body.classList.toggle('dark-theme');
+            cabeca.classList.toggle('dark-theme');
+            card.classList.toggle('dark-theme');
+
+        }
+
+        function changeBackgroundColor() {
+            const newColor = prompt('Digite uma cor em formato hexadecimal (#RRGGBB) ou um nome de cor:');
+            const body = document.querySelector('body');
+            body.style.backgroundColor = newColor;
+        }
+
+
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            menu.classList.toggle('show-menu');
+            menuToggle.classList.toggle('hide-menu');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic Page Info -->
+  <meta charset="utf-8" />
+  <title>AniKit</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:title" content="REST API FREE">
+  <meta property="og:description" content="FEITA POR: @clovermods">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.8/font-awesome-animation.min.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://telegra.ph/file/e28fabcd7e856b4bcef0a.jpg">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="canonical" href="https://demo-basic.adminkit.io/">
+  <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&amp;display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css" type="text/css"
+    media="all" />
+  <link rel="stylesheet" type="text/css" href="https://ferdiz-afk.github.io/deskapp/vendors/styles/core.css">
+  <link rel="stylesheet" type="text/css" href="https://ferdiz-afk.github.io/deskapp/vendors/styles/icon-font.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="https://ferdiz-afk.github.io/deskapp/vendors/styles/style.css">
+  <style>
+    body {
+      background: #310404 url('<%= user.wallpaper %>') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      font-family: 'Barlow', sans-serif;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+  </style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
+    crossorigin="anonymous"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-GBZ3SGGX85");
+  </script>
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != "dataLayer" ? "&l=" + l : "";
+      j.async = true;
+      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+
+
+  <div class="header">
+    <div class="header-left">
+
+
+      <div class="header-search">
+        <form>
+          <div class="form-group mb-0">
+
+            <div class="dropdown">
+
+              <div class="dropdown-menu dropdown-menu-right">
+                <div class="form-group row">
+                  <label class="col-sm-12 col-md-2 col-form-label">From</label>
+                  <div class="col-sm-12 col-md-10">
+                    <input class="form-control form-control-sm form-control-line" type="text" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-12 col-md-2 col-form-label">To</label>
+                  <div class="col-sm-12 col-md-10">
+                    <input class="form-control form-control-sm form-control-line" type="text" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
+                  <div class="col-sm-12 col-md-10">
+                    <input class="form-control form-control-sm form-control-line" type="text" />
+                  </div>
+                </div>
+                <div class="text-right">
+                  <button class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="dashboard-setting user-notification">
+        <div class="dropdown">
+          <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
+            <i class="dw dw-settings2"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="user-info-dropdown">
+        <div class="dropdown">
+          <a class="dropdown-toggle" role="button">
+            <span class="user-icon">
+              <img src="<%= user.ft %>" alt="" />
+            </span>
+            <span class="user-name">
+              <%= user.username %>
+            </span>
+          </a>
+
+        </div>
+      </div>
+      <div class="github-link">
+
+        <img src="vendors/images/github.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+      <div class="min-height-200px">
+        <div class="page-header">
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="title">
+                <h4>Profile</h4>
+              </div>
+              <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="index.html">Home</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Profile
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+            <div class="pd-20 card-box height-100-p">
+              <div class="profile-photo">
+                <a data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-search"></i></a>
+                <img src="<%= user.ft %>" alt="" class="avatar-photo" />
+                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body pd-5">
+                        <div class="img-container">
+                          <img id="image" src="<%= user.ft %>" alt="Picture" />
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <div class="form-group mb-0">
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </br>
+              <h5 class="text-center h5 mb-0">
+                <%= user.username %>
+              </h5>
+              <p class="text-center text-muted font-14">
+
+              </p>
+              <div class="profile-info">
+                <h5 class="mb-20 h5 text-blue">Informações e contatos</h5>
+                <ul>
+                  <li>
+                    <span>Nível:</span>
+                    <%= user.total %>
+                  </li>
+                </ul>
+              </div>
+              <div class="profile-social">
+                <h5 class="mb-20 h5 text-blue">Links</h5>
+                <ul class="clearfix">
+                  <li>
+                    <a href="<%= user.insta %>" class="btn" data-bgcolor="#f46f30" data-color="#ffffff"><i
+                        class="fa fa-instagram"></i></a>
+                  </li>
+                  <li>
+                    <a href="<%= user.yt %>" class="btn" data-bgcolor="#bd081c" data-color="#ffffff"><i
+                        class="fa fa-youtube"></i></a>
+                  </li>
+                  <li>
+                    <a href="https://wa.me/<%= user.zap %>" class="btn" data-bgcolor="#00b489" data-color="#ffffff"><i
+                        class="fa fa-whatsapp"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="profile-skills">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+            <div class="card-box height-100-p overflow-hidden">
+              <div class="profile-tab height-100-p">
+                <div class="tab height-100-p">
+                  <ul class="nav nav-tabs customtab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#setting" role="tab">Clique aqui para editar</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content">
+
+                    <!-- Timeline Tab start -->
+                    <!-- Setting Tab start -->
+                    <form action="/editarr/<%= user.username %>" method="post">
+                      <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+                        <div class="profile-setting">
+                          <form>
+                            <ul class="profile-edit-list row">
+                              <li class="weight-500 col-md-6">
+                                <h4 class="text-blue h5 mb-20">
+                                  Edite seu perfil
+                                </h4>
+
+                              <li class="weight-500 col-md-6">
+                                <div class="form-group">
+                                  <label>Foto URL:</label>
+                                  <input class="form-control form-control-lg" id="ft" name="ft" value="<%= user.ft %>"
+                                    type="text" placeholder="Paste your link here" />
+                                </div>
+                                <div class="form-group">
+                                  <label>Senha:</label>
+                                  <input class="form-control form-control-lg" id="senha" name="senha"
+                                    value="<%= user.password %>" type="text" placeholder="Paste your Number here" />
+                                </div>
+
+
+
+                                <% if (!user.isPremium) { %>
+
+
+                                  <% } else { %>
+
+                                    <div class="form-group">
+                                      <label>ApiKey:</label>
+                                      <input class="form-control form-control-lg" id="key" name="key"
+                                        value="<%= user.key %>" type="text" placeholder="Paste your Number here" />
+                                    </div>
+
+
+                                    <% } %>
+
+
+
+                                      <hr>
+
+                                      <div class="form-group">
+                                        <label>Wallpaper URL:</label>
+                                        <input class="form-control form-control-lg" id="wallpaper" name="wallpaper"
+                                          value="<%= user.wallpaper %>" type="text"
+                                          placeholder="<%= user.wallpaper %>" />
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label>WhatsApp Numero:</label>
+                                        <input class="form-control form-control-lg" id="zap" name="zap"
+                                          value="<%= user.zap %>" type="text" placeholder="<%= user.zap %>" />
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Youtube URL:</label>
+                                        <input class="form-control form-control-lg" id="yt" name="yt"
+                                          value="<%= user.yt %>" type="text" placeholder="<%= user.yt %>" />
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Instagram URL:</label>
+                                        <input class="form-control form-control-lg" id="insta" name="insta"
+                                          value="<%= user.insta %>" type="text" placeholder="<%= user.insta %>" />
+                                      </div>
+
+                                      <div class="form-group mb-0">
+                                        <input type="submit" class="btn btn-primary" value="Save & Update" />
+                                      </div>
+                              </li>
+                            </ul>
+                          </form>
+                        </div>
+                      </div>
+                      </from>
+                      <!-- Timeline Tab End -->
+                      <!-- Tasks Tab start -->
+
+                      <!-- Tasks Tab End -->
+
+                      <!-- Setting Tab End -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- welcome modal start -->
+
+  <!-- welcome modal end -->
+  <!-- js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/core.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/script.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/process.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/layout-settings.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/apexcharts/apexcharts.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+  <script src="https://ferdiz-afk.github.io/deskapp/vendors/scripts/dashboard.js"></script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      var image = document.getElementById("image");
+      var cropBoxData;
+      var canvasData;
+      var cropper;
+
+      $("#modal")
+        .on("shown.bs.modal", function () {
+          cropper = new Cropper(image, {
+            autoCropArea: 0.5,
+            dragMode: "move",
+            aspectRatio: 3 / 3,
+            restore: false,
+            guides: false,
+            center: false,
+            highlight: false,
+            cropBoxMovable: false,
+            cropBoxResizable: false,
+            toggleDragModeOnDblclick: false,
+            ready: function () {
+              cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+            },
+          });
+        })
+        .on("hidden.bs.modal", function () {
+          cropBoxData = cropper.getCropBoxData();
+          canvasData = cropper.getCanvasData();
+          cropper.destroy();
+        });
+    });
+  </script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
+      style="display: none; visibility: hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

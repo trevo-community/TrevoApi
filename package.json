@@ -1,0 +1,41 @@
+{
+  "name": "trevoapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "base-64": "^1.0.0",
+    "base32": "0.0.6",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "memorystore": "^1.6.6",
+    "mongodb": "^4.3.1",
+    "mongoose": "^6.2.1",
+    "monk": "^7.3.3",
+    "morgan": "^1.10.0",
+    "needle": "^2.6.0",
+    "node-fetch": "^2.6.1",
+    "node-telegram-bot-api": "^0.64.0",
+    "nodemailer": "^6.9.1",
+    "ssl-express-www": "^3.0.7",
+    "textmaker-thiccy": "^1.3.1",
+    "tinyurl": "^1.1.7",
+    "yt-search": "^2.7.3",
+    "ytdl-core": "^4.4.5",
+    "zrapi": "0.0.6"
+  },
+  "description": "TrevoApi",
+  "author": "@clovermyt",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "nada ainda"
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de login</title>
+
+  <meta property="og:title" content="ENTRAR">
+  <meta property="og:description" content="FEITA POR: @clovermods">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://telegra.ph/file/e28fabcd7e856b4bcef0a.jpg">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #310404 url(https://i.pinimg.com/originals/f2/bf/43/f2bf432e3a5c7b14a2c97451e7c6c50f.gif) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      font-family: 'Barlow', sans-serif;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    div {
+      background-color: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 80px;
+      border-radius: 15px;
+      color: #fff;
+    }
+
+    input {
+      padding: 15px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      background-color: dodgerblue;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+
+    }
+
+    button:hover {
+      background-color: deepskyblue;
+      cursor: pointer;
+    }
+
+    a {
+      color: red;
+    }
+  </style>
+  <script>
+    function logar() {
+
+      var login = document.getElementById('login').value;
+      var password = document.getElementById('password').value;
+
+      if (login == "Admin" && password == "1234") {
+        location.href = "docs.html";
+      }
+
+      if (login == "KevinMaster" && password == "Mj14141414") {
+        location.href = "docs.html";
+      }
+
+      if (login == "KazeDevID" && password == "Kaze123") {
+        location.href = "docs.html";
+      }
+
+      if (login == "DModZ" && password == "holapapu132") {
+        location.href = "docs.html";
+      }
+      if (login == "ts3010" && password == "1866") {
+        location.href = "docs.html";
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+
+  <div>
+    <form action="/login" method="post">
+      <h1>Login</h1>
+      <input type="text" placeholder="Insira o nome de Usuário" id="username" name="username" required>
+      <br><br>
+      <input type="password" placeholder="Insira Sua Senha" id="password" name="password" required>
+      <br><br>
+      <button>Entrar</button>
+      <p>Ainda não tem uma conta? <a href="/register">Criar</a></p>
+    </form>
+  </div>
+
+
+
+
+
+</body>
+
+</html>
