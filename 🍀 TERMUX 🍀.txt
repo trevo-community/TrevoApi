@@ -41,6 +41,6 @@ FIM DOS COMANDOS
 
 Será exibido o link da API que você deve colar no Chrome ou em outro navegador para visualizar. Porém, se você rodar a API pelo Termux, apenas o seu dispositivo poderá acessá-la.
 
-Para que outras pessoas possam acessar o site, é necessário hospedá-lo. Eu recomendo o Render, que oferece hospedagem gratuita por um tempo, mas o ideal é investir em uma hospedagem paga de sua preferência. As mesmas hospedagens usadas para bots de WhatsApp também funcionam para esse tipo de projeto.
+Para que outras pessoas possam acessar o site, é necessário hospedá-lo. Eu recomendo o render.com, que oferece hospedagem gratuita por um tempo, mas o ideal é investir em uma hospedagem paga de sua preferência. As mesmas hospedagens usadas para bots de WhatsApp também funcionam para esse tipo de projeto.
 
 Se quiserem um tutorial de como hospedar em uma plataforma paga, é só comentar no vídeo!

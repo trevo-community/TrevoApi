@@ -384,7 +384,7 @@ app.post('/editarr/:username', async (req, res) => {
 // ============== ROTAS NORMAIS DA API ==============\\
 
 app.listen(3000, () => {
-  console.log("Server rodando na porta 8000")
+  console.log("Server rodando: http://localhost:3000")
 })
 
 module.exports = app
