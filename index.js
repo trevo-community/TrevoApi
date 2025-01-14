@@ -1,7 +1,21 @@
+/* @CLOVERMYT */
+
+// Canal: https://youtube.com/@clovermyt
+
+// Canal WhatsApp: https://whatsapp.com/channel/0029Va974hY2975B61INGX3Q
+
+// Instagram: https://www.instagram.com/clovermods?igsh=MmcyMHlrYnhoN2Zk
+
+// Telegram: t.me/cinco_folhas
+
+// Comunidade WhatsApp: https://chat.whatsapp.com/Kc5HLGCIokb37mA36NJrM6
+
+// SE FOR REPOSTAR ME MARCA 🧙‍♂️🍀
+
 const axios = require('axios');
 var express = require('express'),
-  cors = require('cors'),
-  secure = require('ssl-express-www');
+  cors = require('cors');
+  //secure = require('ssl-express-www');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -20,7 +34,6 @@ const loghandler = {
     codigo: 406,
     mensagem: 'Sem Saldo'
   },
-  // ... outras mensagens de erro
   error: {
     status: false,
     criador: creator,
@@ -42,7 +55,6 @@ app.use(session({
   }),
 }));
 app.use(cors())
-app.use(secure)
 app.use(express.static("public"))
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -132,16 +144,6 @@ async function saveUsers(users) {
     console.error('Erro ao salvar os dados no banco de dados:', error);
   }
 }
-
-const isUserBanned = async (username) => {
-  try {
-    const user = await User.findOne({ username, isPremium: true });
-    return !!user;
-  } catch (error) {
-    console.error('Erro ao verificar status de banimento do usuário:', error);
-    return false;
-  }
-};
 
 
 
@@ -373,8 +375,17 @@ app.post('/editarr/:username', async (req, res) => {
 // ============== ROTAS NORMAIS DA API ==============\\
 
 
+
+
+
+
+
+
+// ============== ROTAS NORMAIS DA API ==============\\
+
 app.listen(3000, () => {
   console.log("Server rodando na porta 8000")
 })
 
 module.exports = app
+/* @CLOVERMYT */

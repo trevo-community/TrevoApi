@@ -1,0 +1,46 @@
+==========================
+🍀 LISTA DE COMANDOS PARA LIGAR NO TERMUX 🍀
+==========================
+
+~~> ⚠️ Configuração Inicial (Obrigatória se for a primeira vez ou após limpar dados do Termux):
+
+$ termux-setup-storage
+
+$ pkg update
+ 
+$ pkg upgrade
+
+$ pkg install git
+
+$ pkg install nodejs
+
+$ pkg install npm
+
+$ pkg install yarn
+
+~~> ✅ Se o Termux já estiver configurado, siga daqui:
+
+$ pkg install yarn
+
+$ cd /sdcard/TrevoApi
+
+ ou se tiver na pasta download
+ 
+$ cd /sdcard/download/TrevoApi
+
+$ yarn install 
+
+$ sh start.sh
+
+
+==========================
+FIM DOS COMANDOS
+==========================
+
+🍀 AVISO 🍀
+
+Será exibido o link da API que você deve colar no Chrome ou em outro navegador para visualizar. Porém, se você rodar a API pelo Termux, apenas o seu dispositivo poderá acessá-la.
+
+Para que outras pessoas possam acessar o site, é necessário hospedá-lo. Eu recomendo o Render, que oferece hospedagem gratuita por um tempo, mas o ideal é investir em uma hospedagem paga de sua preferência. As mesmas hospedagens usadas para bots de WhatsApp também funcionam para esse tipo de projeto.
+
+Se quiserem um tutorial de como hospedar em uma plataforma paga, é só comentar no vídeo!
