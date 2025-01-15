@@ -15,7 +15,6 @@
 const axios = require('axios');
 var express = require('express'),
   cors = require('cors');
-  //secure = require('ssl-express-www');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -159,7 +158,6 @@ app.get('/', async (req, res) => {
     const userDb = await User.findOne({ username, password });
     const quantidadeRegistrados = await User.countDocuments();
     const topUsers = await User.find().sort({ saldo: -1 }).limit(5);
-
     return res.render('dashboard', { user, userDb, topUsers, quantidade: quantidadeRegistrados });
   } catch (error) {
     console.error('Erro ao processar a rota:', error);
@@ -170,7 +168,6 @@ app.get('/', async (req, res) => {
 
 app.get('/myperfil', async (req, res) => {
   const user = req.session.user;
-
   if (user) {
     const { username, password } = user;
       const userDb = await User.findOne({ username, password });
@@ -183,10 +180,8 @@ app.get('/myperfil', async (req, res) => {
 
 app.get('/search', async (req, res) => {
   const searchTerm = req.query.search || '';
-
   try {
     const searchResults = await User.find({ username: { $regex: searchTerm, $options: 'i' } });
-
     return res.render('search', { searchTerm, searchResults });
   } catch (error) {
     console.error('Erro ao buscar usuários:', error);
@@ -207,7 +202,6 @@ app.post('/register', async (req, res) => {
     }
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     const keycode = Math.floor(100000 + Math.random() * 900000).toString();
-
     const ft = "https://telegra.ph/file/f932f56e19397b0c7c448.jpg";
     const saldo = 0; 
     const total = 0;
@@ -216,7 +210,6 @@ app.post('/register', async (req, res) => {
     const zap = "55759865969696"
     const yt = "youtube.com/@clovermods"
     const wallpaper = "https://telegra.ph/file/56fa53ec05377a51311cc.jpg"
-    
     const user = new User({ username, password, email, key, saldo, total, ft, zap, insta, yt, wallpaper, isAdm: false });
     await user.save();
     console.log(user)
@@ -228,35 +221,36 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ message: 'Erro ao registrar usuário.' });
   }
 });
-
 app.get('/login', (req, res) => {
   res.render('login');
 });
 
 app.post('/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
-
-    if (user && (password, user.password)) {
+  const { username, password } = req.body;
+  const senha = password
+  const user = await User.findOne({ username });
+  if (user) {
+    try {
+      if (user.password !== senha) {
+        return res.status(401).send('Nome de usuário ou senha incorretos. Por favor, tente novamente.');
+      }
       req.session.user = user;
-
       res.redirect('/');
-    } else {
-      res.status(401).json({ message: 'Credenciais inválidas.' });
+    } catch (error) {
+      console.error('Erro ao acessar o banco de dados:', error);
+      return res.status(500).send('Erro interno do servidor. Por favor, tente novamente mais tarde.');
     }
-  } catch (error) {
-    res.status(500).json({ message: 'Erro ao autenticar usuário.' });
+  } else {
+    res.status(401).json({ message: 'Usuário não encontrado.' });
   }
-});
+
+})
 
 app.get('/admin', async (req, res) => {
   const user = req.session.user;
-
   if (user) {
     try {
       const isAdmin = await User.findOne({ _id: user._id, isAdm: true });
-
       if (isAdmin) {
         const users = await User.find();
         return res.render('adminDashboard', { users, user });
@@ -272,25 +266,19 @@ app.get('/admin', async (req, res) => {
   }
 });
 
-
 app.get('/editar/:username', async (req, res) => {
   const { user: currentUser, senha: currentPassword } = req.session;
   const { username: targetUsername } = req.params;
   const specialKey = 'SUPREMnO';
-
   try {
     const user = await User.findOne({ username: targetUsername });
-
     if (!user) {
       return res.status(404).send('Usuário não encontrado.');
     }
-
     const isAdminOrSpecialUser = currentUser.isAdm || currentUser.key === specialKey;
-
     if (!isAdminOrSpecialUser && (user.key !== currentPassword || user.username !== currentUser.username)) {
       return res.status(401).send('Acesso não autorizado para editar.');
     }
-
     res.render('edit', { user });
   } catch (error) {
     console.error('Erro ao acessar o banco de dados:', error);
@@ -325,7 +313,6 @@ app.post('/edit/:username', async (req, res) => {
   const { password, key, ft, saldo, total, isAdm } = req.body;
   try {
     const user = await User.findOne({ username });
-
     if (!user) {
       return res.status(404).send('Usuário não encontrado.');
     }
@@ -336,9 +323,7 @@ app.post('/edit/:username', async (req, res) => {
     user.saldo = saldo || user.saldo;
     user.isAdm = isAdmValue;
     user.total = total || user.total;
-
     await user.save();
-
     return res.redirect('/');
   } catch (error) {
     console.error('Erro ao acessar o banco de dados:', error);
@@ -352,7 +337,6 @@ app.post('/editarr/:username', async (req, res) => {
   const { password, key, ft, insta, wallpaper, zap, yt } = req.body;
   try {
     const user = await User.findOne({ username });
-
     if (!user) {
       return res.status(404).send('Usuário não encontrado.');
     }
@@ -363,9 +347,7 @@ app.post('/editarr/:username', async (req, res) => {
     user.insta = insta || user.insta
     user.zap = zap || user.zap
     user.wallpaper = wallpaper || user.wallpaper
-    
     await user.save();
-
     return res.redirect('/login');
   } catch (error) {
     console.error('Erro ao acessar o banco de dados:', error);

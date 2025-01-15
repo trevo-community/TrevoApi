@@ -271,27 +271,9 @@
                                 </div>
                                 <div class="form-group">
                                   <label>Senha:</label>
-                                  <input class="form-control form-control-lg" id="senha" name="senha"
+                                  <input class="form-control form-control-lg" id="password" name="password"
                                     value="<%= user.password %>" type="text" placeholder="Paste your Number here" />
                                 </div>
-
-
-
-                                <% if (!user.isPremium) { %>
-
-
-                                  <% } else { %>
-
-                                    <div class="form-group">
-                                      <label>ApiKey:</label>
-                                      <input class="form-control form-control-lg" id="key" name="key"
-                                        value="<%= user.key %>" type="text" placeholder="Paste your Number here" />
-                                    </div>
-
-
-                                    <% } %>
-
-
 
                                       <hr>
 
