@@ -36,6 +36,7 @@ pkg install yarn -y   # Instala o Yarn
 Clone o repositório do GitHub com o comando:
 
 ```bash
+cd /sdcard/
 git clone https://github.com/trevo-community/TrevoApi.git
 cd TrevoApi
 ```
