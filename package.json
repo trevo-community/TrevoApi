@@ -28,7 +28,7 @@
   "description": "TrevoApi",
   "author": "@clovermyt",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
     "start": "node index.js"
   },
   "repository": {
@@ -36,4 +36,5 @@
     "url": "https://github.com/trevo-community/TrevoApi.git"
   }
 }
+
 
