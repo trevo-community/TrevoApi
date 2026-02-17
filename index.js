@@ -1,16 +1,17 @@
+
 /* @CLOVERMYT */
 
 // Canal: https://youtube.com/@clovermyt
 
 // Canal WhatsApp: https://whatsapp.com/channel/0029Va974hY2975B61INGX3Q
 
-// Instagram: https://www.instagram.com/clovermods?igsh=MmcyMHlrYnhoN2Zk
-
-// Telegram: t.me/cinco_folhas
+// Instagram: @r4mon_sant0s
 
 // Comunidade WhatsApp: https://chat.whatsapp.com/Kc5HLGCIokb37mA36NJrM6
 
 // SE FOR REPOSTAR ME MARCA 🧙‍♂️🍀
+
+// o html desse site eu peguei em algum lugar da internet a muito tempo
 
 const axios = require('axios');
 var express = require('express'),
@@ -22,24 +23,21 @@ const session = require('express-session');
 const path = require('path');
 const MemoryStore = require('memorystore')(session);
 const fs = require('fs');
-const { token } = require("./config.js");
+const { 
+    token,
+    ft,
+    total,
+    insta,
+    zap,
+    yt,
+    wallpaper,
+    saldo
+ } = require("./config.js");
 const htmlPath = path.join(__dirname, './views/error.html');
 const creator = "CM";
+const { YtDlp }  = require('ytdlp-nodejs')
+const ytdlp = new YtDlp();
 
-const loghandler = {
-  notparam: {
-    status: false,
-    criador: creator,
-    codigo: 406,
-    mensagem: 'Sem Saldo'
-  },
-  error: {
-    status: false,
-    criador: creator,
-    codigo: 404,
-    mensagem: '404 ERROR'
-  }
-};
 var app = express()
 app.enable('trust proxy');
 app.set("json spaces", 2)
@@ -87,6 +85,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('Lady', userSchema);
 Person = User;
+
 async function diminuirSaldo(username) {
   try {
     const user = await User.findOne({ username });
@@ -111,7 +110,7 @@ async function diminuirSaldo(username) {
   }
 }
 
-async function adicionarSaldo(username) {
+async function adicionarSldoUsado(username) {
   try {
     const user = await User.findOne({ username });
     if (!user) {
@@ -125,26 +124,6 @@ async function adicionarSaldo(username) {
     return false;
   }
 }
-
-async function readUsers() {
-  try {
-    return await User.find();
-  } catch (error) {
-    console.error('Erro ao acessar o banco de dados:', error);
-    return [];
-  }
-}
-
-async function saveUsers(users) {
-  try {
-    await User.deleteMany();
-    await User.insertMany(users);
-  } catch (error) {
-    console.error('Erro ao salvar os dados no banco de dados:', error);
-  }
-}
-
-
 
 // ============== ROTAS DE CONFIGURACAO DA API ==============\\
 
@@ -179,6 +158,10 @@ app.get('/myperfil', async (req, res) => {
 });
 
 app.get('/search', async (req, res) => {
+  const user = req.session.user;
+  if (!user) {
+    return res.redirect('/login');
+  }
   const searchTerm = req.query.search || '';
   try {
     const searchResults = await User.find({ username: { $regex: searchTerm, $options: 'i' } });
@@ -202,14 +185,7 @@ app.post('/register', async (req, res) => {
     }
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     const keycode = Math.floor(100000 + Math.random() * 900000).toString();
-    const ft = "https://telegra.ph/file/f932f56e19397b0c7c448.jpg";
-    const saldo = 0; 
-    const total = 0;
     const key = keycode;
-    const insta = "@clovermods"
-    const zap = "55759865969696"
-    const yt = "youtube.com/@clovermods"
-    const wallpaper = "https://telegra.ph/file/56fa53ec05377a51311cc.jpg"
     const user = new User({ username, password, email, key, saldo, total, ft, zap, insta, yt, wallpaper, isAdm: false });
     await user.save();
     console.log(user)
@@ -354,16 +330,119 @@ app.post('/editarr/:username', async (req, res) => {
     return res.status(500).send('Erro interno do servidor. Por favor, tente novamente mais tarde.');
   }
 });
-// ============== ROTAS NORMAIS DA API ==============\\
-
-
-
-
-
-
-
 
 // ============== ROTAS NORMAIS DA API ==============\\
+
+
+
+app.get("/ytmp4", async (req, res) => {
+const { username, key, url } = req.query;
+const user = await User.findOne({ username, key });
+if (!user || user.saldo < 1) {
+  return res.sendFile(htmlPath);
+}
+
+  diminuirSaldo(username)
+  adicionarSldoUsado(username)
+
+  try {
+
+    if (!url) {
+      return res.status(400).json({
+        status: false,
+        error: "URL é obrigatória"
+      });
+    }
+
+    const info = await ytdlp.getInfoAsync(url);
+
+    const formats = info.formats
+      .filter(f => 
+        f.ext === "mp4" &&
+        f.height &&
+        f.acodec !== "none"
+      )
+      .sort((a, b) => b.height - a.height);
+
+    if (!formats.length) {
+      return res.status(500).json({
+        status: false,
+        error: "Nenhuma qualidade disponível"
+      });
+    }
+
+    const best = formats[0];
+
+    res.json({
+      status: true,
+      title: info.title,
+      duration: info.duration,
+      thumbnail: info.thumbnail,
+      quality: best.height + "p",
+      filesize: best.filesize || "desconhecido",
+      download_url: best.url
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      status: false,
+      error: err.message
+    });
+  }
+});
+
+app.get("/ytmp3", async (req, res) => {
+  const { username, key, url } = req.query;
+  const user = await User.findOne({ username, key });
+  if (!user || user.saldo < 1) return res.sendFile(htmlPath);
+
+  adicionarSldoUsado(username)
+  diminuirSaldo(username)
+
+  if (!url) {
+    return res.status(400).json({
+      status: false,
+      error: "URL é obrigatória"
+    });
+  }
+
+  try {
+    const info = await ytdlp.getInfoAsync(url);
+
+    const audios = info.formats
+      .filter(f => f.vcodec === "none" && f.ext === "m4a")
+      .sort((a, b) => (b.abr || 0) - (a.abr || 0));
+
+    if (!audios.length) {
+      return res.status(500).json({
+        status: false,
+        error: "Áudio não disponível"
+      });
+    }
+
+    const best = audios[0];
+
+    res.json({
+      status: true,
+      title: info.title,
+      duration: info.duration,
+      thumbnail: info.thumbnail,
+      quality: (best.abr || "auto") + "kbps",
+      download_url: best.url
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      status: false,
+      error: err.message
+    });
+  }
+});
+
+
+
+
+
 
 app.listen(3000, () => {
   console.log("Server rodando: http://localhost:3000")
