@@ -35,8 +35,7 @@ const {
  } = require("./config.js");
 const htmlPath = path.join(__dirname, './views/error.html');
 const creator = "CM";
-const { YtDlp }  = require('ytdlp-nodejs')
-const ytdlp = new YtDlp();
+
 
 var app = express()
 app.enable('trust proxy');
@@ -339,4 +338,5 @@ app.listen(3000, () => {
 })
 
 module.exports = app
+
 /* @CLOVERMYT */
